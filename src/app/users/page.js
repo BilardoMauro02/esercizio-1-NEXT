@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 async function getUsers() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const res = await fetch('http://localhost:3000/api/users', {cache: "no-store"});
   return res.json();
 }
 
@@ -12,11 +12,11 @@ export default async function UsersPage() {
     <main>
       <h1>Lista completa degli utenti</h1>
       <ul>
-        {users.slice(0, 10).map(user => (
+        {users.map(user => (
           <li key={user.id}>
             <Link href={`/users/${user.id}`}>
               <strong>{user.name}</strong>
-            </Link> - {user.email}
+            </Link> – {user.email}
           </li>
         ))}
       </ul>

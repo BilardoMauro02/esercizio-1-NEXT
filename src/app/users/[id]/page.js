@@ -1,5 +1,6 @@
 export default async function UserDetail({ params }) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`);
+  const {id} = await Promise.resolve(params);
+  const res = await fetch(`http://localhost:3000/api/users/${id}`, {cache: "no-store"});
   const user = await res.json();
 
   return (
